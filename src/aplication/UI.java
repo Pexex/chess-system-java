@@ -57,20 +57,27 @@ public class UI {
 		printCapturesPieces(captured);
 		System.out.println();
 		System.out.println("Turn: "+ chessMatch.getTurn());
-		if (chessMatch.getCurrentPlayer() == Color.BLACK ) {
-			System.out.println("Waiting player: " + ANSI_YELLOW + chessMatch.getCurrentPlayer());
-			System.out.print(ANSI_RESET);
-		}
-		else {
-			System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
-		}
-		if (chessMatch.getCheck()) {
+		if (!chessMatch.getCheckMate()) {
 			if (chessMatch.getCurrentPlayer() == Color.BLACK ) {
-				System.out.println(ANSI_YELLOW + "CHECK!" + ANSI_RESET);
+				System.out.println("Waiting player: " + ANSI_YELLOW + chessMatch.getCurrentPlayer());
+				System.out.print(ANSI_RESET);
 			}
 			else {
-				System.out.println("CHECK!");
+				System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
 			}
+			if (chessMatch.getCheck()) {
+				if (chessMatch.getCurrentPlayer() == Color.BLACK ) {
+					System.out.println(ANSI_YELLOW + "CHECK!" + ANSI_RESET);
+				}
+				else {
+					System.out.println("CHECK!");
+				}	
+			}
+			
+		}
+		else {
+			System.out.println("CHECKMATE!");
+			System.out.println(ANSI_GREEN + "Winner: " + chessMatch.getCurrentPlayer() + ANSI_RESET);
 		}
 	}
 
